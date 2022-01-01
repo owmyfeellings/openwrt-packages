@@ -1,4 +1,4 @@
-From dde7a684b09556977ed771fa64b9920801ed3052 Mon Sep 17 00:00:00 2001
+From 1acef15b97889a7fbf795d26df390dc2b06d67bd Mon Sep 17 00:00:00 2001
 From: jinsh <jinsh11@chinatelecom.cn>
 Date: Wed, 25 Aug 2021 18:00:50 +0800
 Subject: [PATCH] =?UTF-8?q?=E8=A7=A3=E5=86=B3openwrt=E7=8E=AF=E5=A2=83?=
@@ -10,11 +10,11 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 ---
- package/openwrt/files/etc/init.d/smartdns | 24 +++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ package/openwrt/files/etc/init.d/smartdns | 25 +++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/package/openwrt/files/etc/init.d/smartdns b/package/openwrt/files/etc/init.d/smartdns
-index 2bf799e..472b50f 100644
+index 2bf799e..a502ca1 100644
 --- a/package/openwrt/files/etc/init.d/smartdns
 +++ b/package/openwrt/files/etc/init.d/smartdns
 @@ -32,6 +32,8 @@ SMARTDNS_CONF_TMP="${SMARTDNS_CONF}.tmp"
@@ -26,10 +26,11 @@ index 2bf799e..472b50f 100644
  set_forward_dnsmasq()
  {
  	local PORT="$1"
-@@ -388,3 +390,25 @@ reload_service()
+@@ -388,3 +390,26 @@ reload_service()
  	stop
  	start
  }
++
 +stop_smartdns()
 +{
 +    local section="$1"
@@ -44,6 +45,7 @@ index 2bf799e..472b50f 100644
 +		stop_forward_dnsmasq "$port"
 +    fi
 +}
++
 +stop_service()
 +{
 +	config_load "smartdns"
@@ -51,7 +53,6 @@ index 2bf799e..472b50f 100644
 +    killall -s SIGTERM smartdns
 +       
 +}
-+
 -- 
 2.34.1
 
